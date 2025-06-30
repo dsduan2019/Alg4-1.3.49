@@ -36,7 +36,7 @@ M：队列中除Tbuf栈中元素的个数，即M = N - Tbuf.size()
             
         }
 
-第二步：只要Tail不为空，则将Tail栈中的元素压入Hbuf，其中有一个常数次(SPEED)的for循环，该循环是为了加速Tail栈中的元素向Hbuf的转移，因为Hbuf是Head的缓冲，所以终是为了加速Tail到Head的转移，将元素从Tail往Head转移是该算法的一个重要的设计原则，能够有效保证出队时通过简单的弹出Head顶层元素即可完成，虽然此处有一个for循环，但次数是有限的且固定的，因此保证入队时栈操作仍然是常数次。入队的第二步代码如下。
+第二步：只要Tail不为空，则将Tail栈中的元素转移到Hbuf，其中有一个常数次(SPEED)的for循环，该循环是为了加速Tail栈中的元素向Hbuf的转移，因为Hbuf是Head的缓冲，所以终是为了加速Tail到Head的转移，将元素从Tail往Head转移是该算法的一个重要的设计原则，能够有效保证出队时通过简单的弹出Head顶层元素即可完成，虽然此处有一个for循环，但次数是有限的且固定的，因此保证入队时栈操作仍然是常数次。入队的第二步代码如下。
 
         for(int i = 0; i < SPEED; i ++){
         
@@ -46,7 +46,7 @@ M：队列中除Tbuf栈中元素的个数，即M = N - Tbuf.size()
                 
         }
 
-第三步：将Head中的元素转移到Hrev，此处转移并不实际弹出Head中的元素，只是通过游标(cursor)将head栈中的元素逐个读取而不弹出(peak)再压入Hrev，因此在栈的实现中引入cursor变量和peak方法，并且引入变量L用于记录peak后剩余的元素个数，并通过栈的left方法返回私有变量L的值。因此当Head中还存在未peak的值，即H.left()>0，则将Head中的元素peak并压入（push）到Hrev，即以下代码。
+第三步：将Head中的元素转移到Hrev，此处转移并不实际弹出Head中的元素，只是通过游标(cursor)将head栈中的元素逐个读取而不弹出(peak)再压入Hrev，因此在栈的实现中引入cursor变量和peak方法，并且引入变量L用于记录peak后剩余的元素个数，并通过栈的left方法返回私有变量L的值。因此当Head中还存在未peak的值，即Head.left()>0，则将Head中的元素peak并压入（push）到Hrev，即以下代码。
 
         if(Head.left() > 0){
         
@@ -54,7 +54,13 @@ M：队列中除Tbuf栈中元素的个数，即M = N - Tbuf.size()
             
         }
 
+第四步：将Hrev中的元素转移到Hbuf，这里需要满足几个条件，首先Head中的元素全部转移到Hrev中（Head.left()==0），否则后续Hbuf元素顺序错乱，其次Tail为空（Tail.isempty()），否则按照第二步，Tail也会将元素转移到Hbuf，从而造成Hbuf中元素顺序错乱，最后Hrev不为空，这个比较直观，Hrev为空则没有任何元素需要转移。代码如下：
 
+        if(Head.left() == 0 && Tail.isempty() && !Hrev.isempty()){
+        
+                poppush(Hrev, Hbuf);
+                
+        }
 
 References:
 
