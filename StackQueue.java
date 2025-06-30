@@ -49,7 +49,7 @@ public class StackQueue<Item>{
         if(Head.left() > 0){
             peakpush(Head, Hrev);
         }
-        if(Head.left() <= 0 && Tail.isempty() && !Hrev.isempty()){
+        if(Head.left() == 0 && Tail.isempty() && !Hrev.isempty()){
                 poppush(Hrev, Hbuf);
         }
         if(Head.isempty() && Tail.isempty() || (Hbuf.size() == M)){
@@ -73,7 +73,7 @@ public class StackQueue<Item>{
         if(Head.left() > 0){
             peakpush(Head, Hrev);
         }
-        if(Head.left() <= 0 && Tail.isempty() && !Hrev.isempty()){
+        if(Head.left() == 0 && Tail.isempty() && !Hrev.isempty()){
                 poppush(Hrev, Hbuf);
         }
         if(Tail.isempty() && Head.isempty() || (Hbuf.size() == M)){
