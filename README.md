@@ -46,7 +46,14 @@ M：队列中除Tbuf栈中元素的个数，即M = N - Tbuf.size()
                 
         }
 
-第三步：将Head中的元素放到Hflip
+第三步：将Head中的元素转移到Hrev，此处转移并不实际弹出Head中的元素，只是通过游标(cursor)将head栈中的元素逐个读取而不弹出(peak)再压入Hrev，因此在栈的实现中引入cursor变量和peak方法，并且引入变量L用于记录peak后剩余的元素个数，并通过栈的left方法返回私有变量L的值。因此当Head中还存在未peak的值，即H.left()>0，则将Head中的元素peak并压入（push）到Hrev，即以下代码。
+
+        if(Head.left() > 0){
+        
+            peakpush(Head, Hrev);
+            
+        }
+
 
 
 References:
