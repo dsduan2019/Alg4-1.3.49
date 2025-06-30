@@ -4,7 +4,7 @@ Implement a deque with limited stacks so that each deque operation takes a const
 
 以下是主要代码具体介绍。
 
-一、使用的6个栈及其作用
+一、使用的栈、变量及其作用
 
 Head栈（头栈）：用于出队，Head栈的栈顶是下一个出队的元素。
 
@@ -15,6 +15,14 @@ Hbuf栈（头缓冲栈）：Head栈的缓冲。
 Hrev栈（头逆序栈）：同Head栈中的元素顺序相反。
 
 Tbuf栈（尾缓冲栈）：Tail栈的缓冲。
+
+N：队列中的元素总数。
+
+M：队列中除Tbuf栈中元素的个即，M = N - Tbuf.size()
+
+
+
+
 
 
 References:
