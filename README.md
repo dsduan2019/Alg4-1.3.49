@@ -62,6 +62,14 @@ M：队列中除Tbuf栈中元素的个数，即M = N - Tbuf.size()
                 
         }
 
+第五步：栈交换，用Head缓冲栈替换Head栈，并清空Head缓冲栈，用Tbuf缓冲栈替换Tail栈，并清空Tbuf栈，在进行栈交换时使用的临时栈Temp，在两种情况下需要进行栈交换。一种情况是Head栈和Tail栈均为空，这时Head没有可出栈的，Hbuf和Head交换, 一但Hbuf为空，Tbuf和Tail交换，这时Tail也可以继续往Hbuf转移元素。另一种情况是Hbuf中存放了队列中除Tbuf以外的所有元素（Hbuf.size() == M），因些将过将Hbuf和Head交换，Tbuf和Tail交换，可以保证Head和Tail刚好保存了队列中所有的元素，并且顺序正确。代码如下：
+
+        if(Head.isempty() && Tail.isempty() || (Hbuf.size() == M)){
+        
+            swap();
+            
+        }
+
 References:
 
 https://blog.csdn.net/MaaaMalik/article/details/94163051
