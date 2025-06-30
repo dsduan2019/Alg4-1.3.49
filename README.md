@@ -4,7 +4,7 @@ Implement a deque with limited stacks so that each deque operation takes a const
 
 以下是主要代码具体介绍。
 
-一、使用的栈、变量及其作用
+## 一、使用的栈及变量
 
 Head栈（头栈）：用于出队，Head栈的栈顶是下一个出队的元素。
 
@@ -20,7 +20,7 @@ N：队列中的元素总数。
 
 M：队列中除Tbuf栈中元素的个数，即M = N - Tbuf.size()
 
-二、入队操作介绍
+## 二、入队操作介绍
 
 第一步: 入队首先需要将元素压入尾栈，可能是Tail栈（尾栈）或Tbuf栈（尾栈的缓冲），根据Hbuf栈（头缓冲栈）是否为空来确定是压入Tail栈还是压入Tbuf栈，因为Hbuf栈是作为头缓冲栈，其后续会通过交换会成为Head栈，所以其栈顶元素可能需要先出队，而后面Tail栈会往Hbuf栈压入元素，如果Hbuf栈不为空，就先把入队元素暂存在Tbuf中，因为放入Tail栈也会面临无法压入Hbuf的局面。入队的第一步代码如下，其中当压入Tail栈时需要对M进行自增，而压入Tbuf栈时无需对M进行自增（原因见上述M的定义）。
 
@@ -69,6 +69,20 @@ M：队列中除Tbuf栈中元素的个数，即M = N - Tbuf.size()
             swap();
             
         }
+
+## 二、出队操作
+
+第一步：如果Head栈为空，则表明队列为空，因此返回null，否则弹出Head栈顶元素进行出队操作，出队后M需要自减。代码如下：
+
+        if(Head.isempty())
+        
+            return null;
+            
+        Item item = Head.pop();
+        
+        M--;
+
+
 
 References:
 
