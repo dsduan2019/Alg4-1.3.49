@@ -48,7 +48,8 @@ public class StackQueue<Item>{
         }
         if(Head.left() > 0){
             peakpush(Head, Hrev);
-        }else if(Tail.isempty() && !Hrev.isempty()){
+        }
+        if(Head.left() <= 0 && Tail.isempty() && !Hrev.isempty()){
                 poppush(Hrev, Hbuf);
         }
         if(Head.isempty() && Tail.isempty() || (Hbuf.size() == M)){
@@ -71,7 +72,8 @@ public class StackQueue<Item>{
         }
         if(Head.left() > 0){
             peakpush(Head, Hrev);
-        }else if(Tail.isempty() && !Hrev.isempty()){
+        }
+        if(Head.left() <= 0 && Tail.isempty() && !Hrev.isempty()){
                 poppush(Hrev, Hbuf);
         }
         if(Tail.isempty() && Head.isempty() || (Hbuf.size() == M)){
@@ -103,8 +105,8 @@ public class StackQueue<Item>{
         // unit test
         StackQueue<Integer> s = new StackQueue<Integer>();
         final int E = 3;
-        final int M = 70;
-        final int N = 20;
+        final int M = 800;
+        final int N = 400;
         int R = 0;
         int epoch;
         for(epoch = 0; epoch < E; epoch ++){
