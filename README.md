@@ -18,7 +18,7 @@ Tbuf栈（尾缓冲栈）：Tail栈的缓冲。
 
 N：队列中的元素总数。
 
-M：队列中除Tbuf栈中元素的个即，M = N - Tbuf.size()
+M：队列中除Tbuf栈中元素的个数，即M = N - Tbuf.size()
 
 
 
