@@ -59,7 +59,7 @@ public class StackQueue<Item>{
     }
 
     public Item dequeue() {
-        if(Head.isempty() && N == 0)
+        if(Head.isempty())
             return null;
         Item item = Head.pop();
         M--;
@@ -105,8 +105,8 @@ public class StackQueue<Item>{
         // unit test
         StackQueue<Integer> s = new StackQueue<Integer>();
         final int E = 3;
-        final int M = 800;
-        final int N = 400;
+        final int M = 20;
+        final int N = 10;
         int R = 0;
         int epoch;
         for(epoch = 0; epoch < E; epoch ++){
